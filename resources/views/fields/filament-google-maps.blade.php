@@ -5,11 +5,12 @@
 
     <div
         x-ignore
+        x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('filament-google-maps', 'cheesegrits/filament-google-maps'))]"
         ax-load
         x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('filament-google-maps-field', 'cheesegrits/filament-google-maps'))]"
         ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-google-maps-field', 'cheesegrits/filament-google-maps') }}"
         x-data="filamentGoogleMapsField({
-                    state: $wire.entangle('{{ $getStatePath() }}'),
+                    state: $wire.{{ $applyStateBindingModifiers("\$entangle('{$getStatePath()}')") }},
                     setStateUsing: (path, state) => {
                         return $wire.set(path, state)
                     },
@@ -62,7 +63,12 @@
         wire:ignore
     >
         @if ($isSearchBoxControlEnabled())
-            <input x-ref="pacinput" type="text" placeholder="Search Box" />
+            <input
+                class="modern-look"
+                x-ref="pacinput"
+                type="text"
+                placeholder="{{ __('filament-google-maps::fgm.map.search_placeholder') }}"
+            />
         @endif
 
         <div
