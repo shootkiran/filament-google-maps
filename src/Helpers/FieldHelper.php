@@ -35,8 +35,8 @@ class FieldHelper
     {
         $topComponent = self::getTopComponent($component);
         $flatFields   = static::getFlatFields($topComponent);
-        $flatFields = collect($flatFields)
-            ->whereInstanceOf(Field::class)->keyBy(fn($field) => $field->getName());
+        $flatFields   = collect($flatFields)
+            ->whereInstanceOf(Field::class)->keyBy(fn ($field) => $field->getName());
 
         if ($flatFields->has($field)) {
             return $flatFields->get($field)->getStatePath();
