@@ -49,8 +49,6 @@ class Map extends Field
 
     protected Closure|string|null $geolocateLabel = null;
 
-    protected Closure|string|null $geolocatePosition = null;
-
     protected Closure|array $reverseGeocode = [];
 
     protected Closure|bool $debug = false;
@@ -94,7 +92,6 @@ class Map extends Field
         'geolocate'           => false,
         'geolocateOnLoad'     => false,
         'geolocateLabel'      => '',
-        'geolocatePosition'   => 'TOP_CENTER',
         'draggable'           => true,
         'clickable'           => false,
         'defaultLocation'     => [
@@ -347,23 +344,6 @@ class Map extends Field
     public function getGeolocateLabel(): string
     {
         return $this->evaluate($this->geolocateLabel) ?? __('filament-google-maps::fgm.geolocate.label');
-    }
-
-    /**
-     * Override the position to use for the geolocate feature, defaults to 'Set Current Location'
-     *
-     * @return $this
-     */
-    public function geolocatePosition(Closure|string $geolocatePosition): static
-    {
-        $this->geolocatePosition = $geolocatePosition;
-
-        return $this;
-    }
-
-    public function getGeolocatePosition(): string
-    {
-        return $this->evaluate($this->geolocatePosition) ?? __('filament-google-maps::fgm.geolocate.position');
     }
 
     /**
@@ -820,7 +800,6 @@ class Map extends Field
             'autocompleteReverse'    => $this->getAutocompleteReverse(),
             'geolocate'              => $this->getGeolocate(),
             'geolocateLabel'         => $this->getGeolocateLabel(),
-            'geolocatePosition'      => $this->getGeolocatePosition(),
             'geolocateOnLoad'        => $this->getGeolocateOnLoad(),
             'draggable'              => $this->getDraggable(),
             'clickable'              => $this->getClickable(),

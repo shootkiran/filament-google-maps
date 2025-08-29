@@ -5,9 +5,8 @@
 
     <div
         x-ignore
-        ax-load
-        x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('filament-google-maps-field', 'cheesegrits/filament-google-maps'))]"
-        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-google-maps-field', 'cheesegrits/filament-google-maps') }}"
+        x-load
+        x-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-google-maps-field', 'cheesegrits/filament-google-maps') }}"
         x-data="filamentGoogleMapsField({
                     state: $wire.entangle('{{ $getStatePath() }}'),
                     setStateUsing: (path, state) => {
@@ -27,7 +26,6 @@
                     geolocate: @js($getGeolocate()),
                     geolocateOnLoad: @js($getGeolocateOnLoad()),
                     geolocateLabel: @js($getGeolocateLabel()),
-                    geolocatePosition: @js($getGeolocatePosition()),
                     draggable: @js($getDraggable()),
                     clickable: @js($getClickable()),
                     defaultLocation: @js($getDefaultLocation()),
